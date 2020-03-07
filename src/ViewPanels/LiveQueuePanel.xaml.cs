@@ -41,9 +41,8 @@ namespace NepPure.Bilibili.ViewPanels
             var v = btn.Tag as BilibiliUserVm;
             v.IsInQueue = !v.IsInQueue;
             v.InQueueTime = DateTime.Now;
-            await App.MainWin.MainVm.UpdateSearchAsync();
             var no = 1;
-            foreach (var q in App.MainWin.MainVm.InQueueList)
+            foreach (var q in App.MainWin.MainVm.Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.InQueueTime))
             {
                 q.QueueNo = no++;
             }

@@ -31,9 +31,9 @@
             <Button Click="Button_Click_1" Width="50" Margin="5 0 0 0">过滤</Button>
         </StackPanel>
 
-        <!--<StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-            <Button Click="Button_Click_1" Width="100" Margin="5 0 0 0">清空当前队列</Button>
-        </StackPanel>-->
+        <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
+            <Button Click="Button_Click_1" Width="100" Margin="5 0 0 0">刷新直播展示队列</Button>
+        </StackPanel>
 
         <ListView x:Name="ListView" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=SearchedList,Mode=OneWay}">
             <ListView.View>
