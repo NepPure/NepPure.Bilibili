@@ -34,6 +34,7 @@ namespace NepPure.Bilibili
             };
 
             DataContext = MainVm;
+            MainVm.UpdateSearch();
         }
 
         protected override void OnClosed(EventArgs e)

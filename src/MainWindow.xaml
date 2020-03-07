@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:NepPure.Bilibili"                     
                       xmlns:Views="clr-namespace:NepPure.Bilibili.ViewPanels"                    
-        Title="赫萝酱的工具箱" Height="600" Width="800" Icon="favicon.ico" WindowStartupLocation="CenterScreen">
+        Title="赫萝酱的哔哩工具箱" Height="600" Width="850" Icon="favicon.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
@@ -14,12 +14,12 @@
         </Grid.RowDefinitions>
 
         <Controls:MetroAnimatedSingleRowTabControl x:Name="MainTabControl" Grid.Row="0" Margin="10" Opacity="0.93">
-            <TabItem Header="实时队列">
+            <TabItem Header="队列">
 
             </TabItem>
 
             <TabItem Header="船员名单">
-                <Views:UserList DataContext="{Binding Path=Config}"></Views:UserList>
+                <Views:UserList DataContext="{Binding}"></Views:UserList>
             </TabItem>
 
 

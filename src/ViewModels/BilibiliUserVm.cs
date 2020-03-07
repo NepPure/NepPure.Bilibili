@@ -87,5 +87,10 @@ namespace NepPure.Bilibili.ViewModels
         /// 在队列里
         /// </summary>
         public bool IsInQueue { get; set; }
+
+        /// <summary>
+        /// 排队顺序
+        /// </summary>
+        public int QueueNo { get; set; }
     }
 }

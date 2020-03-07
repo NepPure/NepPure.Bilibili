@@ -36,9 +36,8 @@ namespace NepPure.Bilibili.ViewPanels
             {
                 var manager = new BilibiliApiManager();
                 var users = await manager.GetLiveTopListAsync(823947, 653768);
-                //App.MainWin.MainVm.Config.BilibiliUsers = users;
                 App.MainWin.MainVm.Config.BilibiliUsers = manager.MergeUsers(App.MainWin.MainVm.Config.BilibiliUsers, users);
-           
+                App.MainWin.MainVm.UpdateSearch();
             }
             catch (Exception ex)
             {
@@ -48,6 +47,11 @@ namespace NepPure.Bilibili.ViewPanels
             {
                 await loading.CloseAsync();
             }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            App.MainWin.MainVm.UpdateSearch();
         }
     }
 }
