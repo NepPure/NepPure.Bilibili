@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NepPure.Bilibili.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,30 @@ namespace NepPure.Bilibili.ViewPanels
         public LiveQueuePanel()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            App.MainWin.MainVm.UpdateSearch();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button btn))
+            {
+                return;
+            }
+
+            var v = btn.Tag as BilibiliUserVm;
+            v.IsInQueue = !v.IsInQueue;
+            v.InQueueTime = DateTime.Now;
+            App.MainWin.MainVm.UpdateSearch();
+            var no = 1;
+            foreach (var q in App.MainWin.MainVm.InQueueList)
+            {
+                q.QueueNo = no++;
+            }
+            App.MainWin.MainVm.UpdateSearch();
         }
     }
 }

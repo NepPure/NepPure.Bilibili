@@ -28,7 +28,7 @@ namespace NepPure.Bilibili.ViewModels
 
         public void UpdateSearch()
         {
-            InQueueList = Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.QueueNo);
+            InQueueList = Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.InQueueTime);
 
             if (string.IsNullOrWhiteSpace(SearchKey))
             {

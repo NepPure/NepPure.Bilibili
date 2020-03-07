@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace NepPure.Bilibili.ViewModels
 {
@@ -44,8 +45,8 @@ namespace NepPure.Bilibili.ViewModels
         public string Face { get; set; }
 
         /// <summary>
-        /// 0当前观看直播
-        /// 1当前未在观看直播
+        /// 0当前未观看直播
+        /// 1当前在观看直播
         /// </summary>
         public int Is_alive { get; set; }
 
@@ -89,8 +90,19 @@ namespace NepPure.Bilibili.ViewModels
         public bool IsInQueue { get; set; }
 
         /// <summary>
+        /// 队列移动按钮名字
+        /// </summary>
+        [JsonIgnore]
+        public string QueueLabel => IsInQueue ? "移出" : "加入";
+
+        /// <summary>
         /// 排队顺序
         /// </summary>
         public int QueueNo { get; set; }
+
+        /// <summary>
+        /// 加入队列时间
+        /// </summary>
+        public DateTime InQueueTime { get; set; }
     }
 }

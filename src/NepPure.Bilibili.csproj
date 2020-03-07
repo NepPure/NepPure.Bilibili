@@ -97,6 +97,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ImgConverter.cs" />
     <Compile Include="Managers\BilibiliApiManager.cs" />
     <Compile Include="Managers\ConfigurationManager.cs" />
     <Compile Include="ViewModels\BilibiliUserVm.cs" />

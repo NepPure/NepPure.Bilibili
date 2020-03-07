@@ -3,10 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:NepPure.Bilibili.ViewPanels"
+             xmlns:local="clr-namespace:NepPure.Bilibili.ViewPanels"       
+             xmlns:localRoot="clr-namespace:NepPure.Bilibili"       
                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <localRoot:ImgConverter x:Key="imgConverter" />
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -17,21 +23,28 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">       
-                <TextBox Controls:TextBoxHelper.Watermark="船员昵称或Uid模糊查询" Text="{Binding Path=SearchKey,Mode=TwoWay}"  Width="200">
-                </TextBox>
-                <Button Click="Button_Click_1" Width="50" Margin="5 0 0 0">过滤</Button>
-            <Button Click="Button_Click" Margin="5 0 0 0">从Bilibili获取船员列表</Button>
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <TextBox Controls:TextBoxHelper.Watermark="船员昵称或Uid模糊查询" Text="{Binding Path=SearchKey,Mode=TwoWay}"  Width="200">
+            </TextBox>
+            <Button Click="Button_Click_1" Width="50" Margin="5 0 0 0">过滤</Button>
+            <Button Click="Button_Click" Margin="5 0 0 0">从Bilibili更新船员列表</Button>
         </StackPanel>
 
         <ListView x:Name="ListView" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=SearchedList,Mode=OneWay}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="序号" DisplayMemberBinding="{Binding No}"  Width="50"/>
+                    <GridViewColumn Header="头像"  Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Path=Face, Converter={StaticResource  imgConverter}, IsAsync=true}"></Image>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="昵称" DisplayMemberBinding="{Binding UserName}"  Width="150"/>
                     <GridViewColumn Header="Uid" DisplayMemberBinding="{Binding Uid}"  Width="100"/>
                     <GridViewColumn Header="船员职务" DisplayMemberBinding="{Binding GuardLevelLabel}"  Width="100"/>
-                    <GridViewColumn Header="当前在观看直播" DisplayMemberBinding="{Binding IsAlive}"  Width="100"/>
+                    <GridViewColumn Header="在看直播" DisplayMemberBinding="{Binding IsAlive}"  Width="100"/>
                     <GridViewColumn Header="备注"  Width="300">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -42,6 +55,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
 
 
     </Grid>
