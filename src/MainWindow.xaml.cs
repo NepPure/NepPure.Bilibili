@@ -1,4 +1,6 @@
 ﻿using MahApps.Metro.Controls;
+using NepPure.Bilibili.Managers;
+using NepPure.Bilibili.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +23,24 @@ namespace NepPure.Bilibili
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        public MainVm MainVm { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            MainVm = new MainVm
+            {
+                Config = ConfigurationManager.Read()
+            };
+
+            DataContext = MainVm;
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            // 关闭后保存配置
+            ConfigurationManager.Save(MainVm.Config);
+            base.OnClosed(e);
         }
     }
 }

@@ -4,9 +4,36 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:local="clr-namespace:NepPure.Bilibili"
-        Title="赫萝酱的工具箱" Height="450" Width="800" Icon="favicon.ico">
+        xmlns:local="clr-namespace:NepPure.Bilibili"                     
+                      xmlns:Views="clr-namespace:NepPure.Bilibili.ViewPanels"                    
+        Title="赫萝酱的工具箱" Height="600" Width="800" Icon="favicon.ico" WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
 
+        <Controls:MetroAnimatedSingleRowTabControl x:Name="MainTabControl" Grid.Row="0" Margin="10" Opacity="0.93">
+            <TabItem Header="实时队列">
+
+            </TabItem>
+
+            <TabItem Header="船员名单">
+                <Views:UserList DataContext="{Binding Path=Config}"></Views:UserList>
+            </TabItem>
+
+
+            <TabItem Header="关于">
+                <TextBox TextWrapping="WrapWithOverflow" IsReadOnly="True">更多信息请访问Github源码仓库：https://github.com/NepPure/NepPure.Bilibili</TextBox>
+            </TabItem>
+
+        </Controls:MetroAnimatedSingleRowTabControl>
+
+        <StatusBar Grid.Row="1">
+            <StatusBarItem Content="{Binding Path=VersionLabel, Mode=OneTime}"></StatusBarItem>
+            <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
+            <StatusBarItem>当前页面：</StatusBarItem>
+            <StatusBarItem Content="{Binding ElementName=MainTabControl,Path=SelectedItem.Header,Mode=OneWay}"></StatusBarItem>
+        </StatusBar>
     </Grid>
 </Controls:MetroWindow>
