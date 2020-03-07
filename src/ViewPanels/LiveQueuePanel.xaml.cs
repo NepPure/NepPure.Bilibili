@@ -26,12 +26,12 @@ namespace NepPure.Bilibili.ViewPanels
             InitializeComponent();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private async void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            App.MainWin.MainVm.UpdateSearch();
+            await App.MainWin.MainVm.UpdateSearchAsync();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             if (!(sender is Button btn))
             {
@@ -41,13 +41,13 @@ namespace NepPure.Bilibili.ViewPanels
             var v = btn.Tag as BilibiliUserVm;
             v.IsInQueue = !v.IsInQueue;
             v.InQueueTime = DateTime.Now;
-            App.MainWin.MainVm.UpdateSearch();
+            await App.MainWin.MainVm.UpdateSearchAsync();
             var no = 1;
             foreach (var q in App.MainWin.MainVm.InQueueList)
             {
                 q.QueueNo = no++;
             }
-            App.MainWin.MainVm.UpdateSearch();
+            await App.MainWin.MainVm.UpdateSearchAsync();
         }
     }
 }

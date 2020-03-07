@@ -34,14 +34,20 @@ namespace NepPure.Bilibili
             };
 
             DataContext = MainVm;
-            MainVm.UpdateSearch();
+            WebsocketServer.Start(MainVm.Config.Port);
         }
 
         protected override void OnClosed(EventArgs e)
         {
             // 关闭后保存配置
             ConfigurationManager.Save(MainVm.Config);
+            WebsocketServer.Stop();
             base.OnClosed(e);
+        }
+
+        private async void MetroWindow_ContentRendered(object sender, EventArgs e)
+        {
+          await  MainVm.UpdateSearchAsync();
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NepPure.Bilibili.Managers;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -26,17 +28,23 @@ namespace NepPure.Bilibili.ViewModels
 
         public IEnumerable<BilibiliUserVm> SearchedList { get; set; }
 
-        public void UpdateSearch()
+        public async Task UpdateSearchAsync()
         {
-            InQueueList = Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.InQueueTime);
+            await Task.Run(() =>
+             {
+                 InQueueList = Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.InQueueTime);
 
-            if (string.IsNullOrWhiteSpace(SearchKey))
-            {
-                SearchedList = Config.BilibiliUsers;
-                return;
-            }
+                 if (string.IsNullOrWhiteSpace(SearchKey))
+                 {
+                     SearchedList = Config.BilibiliUsers;
+                 }
+                 else
+                 {
+                     SearchedList = Config.BilibiliUsers.Where(m => m.UserName.Contains(SearchKey) || m.Uid.ToString().Contains(SearchKey));
+                 }
 
-            SearchedList = Config.BilibiliUsers.Where(m => m.UserName.Contains(SearchKey) || m.Uid.ToString().Contains(SearchKey));
+                 WebsocketServer.Broadcast(JsonConvert.SerializeObject(InQueueList));
+             });
         }
     }
 }

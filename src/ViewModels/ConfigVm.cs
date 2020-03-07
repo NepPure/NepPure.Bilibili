@@ -17,5 +17,10 @@ namespace NepPure.Bilibili.ViewModels
         }
 
         public List<BilibiliUserVm> BilibiliUsers { get; set; }
+
+        /// <summary>
+        /// ws服务监听端口
+        /// </summary>
+        public int Port { get; set; } = 5678;
     }
 }
