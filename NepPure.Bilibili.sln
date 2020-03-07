@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NepPure.Bilibili", "NepPure.Bilibili.csproj", "{D4681DA2-3D3D-4597-9035-6F76BB290CBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D4681DA2-3D3D-4597-9035-6F76BB290CBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4681DA2-3D3D-4597-9035-6F76BB290CBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4681DA2-3D3D-4597-9035-6F76BB290CBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4681DA2-3D3D-4597-9035-6F76BB290CBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6B89DD57-9AD5-4BAB-A7C2-7A0212808F8A}
+	EndGlobalSection
+EndGlobal
