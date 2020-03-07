@@ -20,3 +20,5 @@
 
 3. 在OBS中添加`浏览器`源，即可在直播间实时展示排队情况
 >TODO:展示界面美化中，稍后上传并更新教程
+
+![image](https://user-images.githubusercontent.com/12379907/76145547-3effd980-60c5-11ea-952d-bf890c0678f8.png)
