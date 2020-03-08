@@ -261,7 +261,7 @@
             <div class="module-footer">
                 <div class="t1">总队列人数</div>
                 <div class="total">{{QueenLength}}</div>
-                <div class="desc">目前仅展示队列前6位舰长</div>
+                <div class="desc">目前仅显示队列前10位舰长</div>
             </div>
         </div>
     </div>
@@ -306,7 +306,7 @@
             getMessage(msg) {
                 if (msg.data) {
                     this.QueenLength = JSON.parse(msg.data).length
-                    this.listData = JSON.parse(msg.data).slice(0, 6)
+                    this.listData = JSON.parse(msg.data).slice(0, 10)
                     this.isListShow = true
                 }
             },
