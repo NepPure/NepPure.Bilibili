@@ -19,6 +19,7 @@
 ![image](https://user-images.githubusercontent.com/12379907/76145476-a79a8680-60c4-11ea-961d-e6471382b064.png)
 
 3. 在OBS中添加`浏览器`源，即可在直播间实时展示排队情况
+
 ![image](https://user-images.githubusercontent.com/12379907/76155402-88344580-6126-11ea-921a-e9faaf304ec1.png)
 
 ![image](https://user-images.githubusercontent.com/12379907/76155322-a483b280-6125-11ea-806f-695e2b5dcc69.png)
