@@ -32,7 +32,8 @@
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-            <Button Click="Button_Click_1" Width="100" Margin="5 0 0 0">刷新直播展示队列</Button>
+            <Button Click="Button_Click_1" Width="120" Margin="5 0 0 0">手动刷新直播展示队列</Button>
+            <Label Margin="5 0 0 0">有任何队列操作会自动同步展示页面</Label>
         </StackPanel>
 
         <ListView x:Name="ListView" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=SearchedList,Mode=OneWay}">

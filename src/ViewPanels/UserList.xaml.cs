@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MahApps.Metro;
 using MahApps.Metro.Controls.Dialogs;
+using System.ComponentModel;
 
 namespace NepPure.Bilibili.ViewPanels
 {
@@ -23,15 +24,40 @@ namespace NepPure.Bilibili.ViewPanels
     /// </summary>
     public partial class UserList : UserControl
     {
+        private readonly BackgroundWorker _backgroundWorker;
+
         public UserList()
         {
             InitializeComponent();
+            _backgroundWorker = new BackgroundWorker();
+            _backgroundWorker.DoWork += _backgroundWorker_DoWork;
+            _backgroundWorker.WorkerSupportsCancellation = true;
+            _backgroundWorker.RunWorkerAsync();
+        }
+
+        private void _backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (true)
+            {
+                if (e.Cancel)
+                {
+                    return;
+                }
+                RefreshAsync().Wait();
+                Task.Delay(TimeSpan.FromMinutes(1)).Wait();
+            }
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var loading = await App.MainWin.ShowProgressAsync("请稍后", "刷新船员中...");
             loading.SetIndeterminate();
+            await RefreshAsync();
+            await loading.CloseAsync();
+        }
+
+        private async Task RefreshAsync()
+        {
             try
             {
                 var manager = new BilibiliApiManager();
@@ -42,10 +68,6 @@ namespace NepPure.Bilibili.ViewPanels
             catch (Exception ex)
             {
                 await App.MainWin.ShowMessageAsync("刷新船员列表出错", ex.Message, MessageDialogStyle.Affirmative);
-            }
-            finally
-            {
-                await loading.CloseAsync();
             }
         }
 

@@ -8,11 +8,11 @@
                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <UserControl.Resources>
         <localRoot:ImgConverter x:Key="imgConverter" />
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -28,6 +28,7 @@
             </TextBox>
             <Button Click="Button_Click_1" Width="50" Margin="5 0 0 0">过滤</Button>
             <Button Click="Button_Click" Margin="5 0 0 0">从Bilibili更新船员列表</Button>
+            <Label Margin="5 0 0 0">每分钟自动同步一次船员列表</Label>
         </StackPanel>
 
         <ListView x:Name="ListView" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=SearchedList,Mode=OneWay}">

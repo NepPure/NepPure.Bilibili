@@ -1,325 +1,325 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <style>
-      body {
-        width: 100vw;
-        height: 100vh;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .wrap {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        display: none;
-      }
-
-      .wrap.show {
-        display: block;
-      }
-
-      .container {
-        position: relative;
-        background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
-        padding: 20px 30px;
-        display: flex;
-        align-items: flex-end;
-      }
-
-      .container::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        filter: blur(20px);
-        background: inherit;
-      }
-
-      .container .list {
-        display: flex;
-        align-items: center;
-        position: relative;
-        z-index: 1;
-        transition: width 0.8s ease-in;
-      }
-
-      .container .item {
-        flex-shrink: 0;
-        margin-right: 20px;
-        width: 65px;
-        transition: all 0.8s ease-in;
-      }
-
-      .container .avatar {
-        border-radius: 100%;
-        width: 48px;
-        height: 48px;
-        background-color: #e7e7e7;
-        margin-bottom: 5px;
-        margin: 0 auto 5px auto;
-        background-repeat: no-repeat;
-        background-size: cover;
-        position: relative;
-      }
-
-      .container .name {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .container .text {
-        font-size: 12px;
-        color: white;
-        text-align: center;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        position: relative;
-      }
-
-      .container .item .flag-online {
-        content: ' ';
-        width: 5px;
-        height: 5px;
-        border-radius: 100%;
-        background-color: #00ff70;
-        display: block;
-        animation: fade 1.5s infinite;
-        -webkit-animation: fade 1.5s infinite;
-        margin-right: 5px;
-        flex-shrink: 0;
-      }
-
-      .container .item.active .tag-active {
-        font-weight: bold;
-        position: absolute;
-        font-size: 20px;
-        color: black;
-        text-align: center;
-        border-radius: 10px;
-        background-color: #fabf00;
-        padding: 2px 15px;
-        white-space: nowrap;
-        transform: scale(0.5);
-        box-sizing: border-box;
-        bottom: -13px;
-        left: -10px;
-      }
-
-      .container .num {
-        font-size: 12px;
-        color: rgba(255, 255, 255, 0.8);
-        text-align: center;
-      }
-
-      .container .moudle-title {
-        position: relative;
-      }
-
-      .container .moudle-title .en {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 12px;
-        font-weight: 300;
-        letter-spacing: 15px;
-      }
-
-      .container .moudle-title .cn {
-        color: white;
-        font-size: 24px;
-        margin-bottom: 50px;
-        position: relative;
-      }
-
-      .container .moudle-title .cn::after {
-        content: '';
-        position: absolute;
-        left: 0px;
-        top: 40px;
-        height: 4px;
-        width: 40px;
-        background-color: #fabf00;
-      }
-
-      .container .moudle-title .date {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 13px;
-        font-weight: 300;
-        letter-spacing: 3px;
-      }
-
-      .container .module-footer {
-        position: relative;
-        margin-left: 10px;
-        min-width: 160px;
-      }
-
-      .container .module-footer .t1 {
-        color: white;
-        font-size: 15px;
-        font-weight: bold;
-        text-align: right;
-        position: relative;
-      }
-
-      .container .module-footer .t1::after {
-        content: '';
-        position: absolute;
-        right: 80px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 10px;
-        height: 10px;
-        background-color: #fabf00;
-      }
-
-      .container .module-footer .total {
-        color: #fabf00;
-        font-weight: bold;
-        text-align: right;
-        font-size: 40px;
-        line-height: 1.2;
-        position: relative;
-        transition: all 0.8s ease-in;
-      }
-
-      .container .module-footer .total::before {
-        content: '+';
-        color: white;
-        font-size: 12px;
-        position: absolute;
-        right: 55px;
-        top: 6px;
-      }
-
-      .container .module-footer .desc {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 12px;
-        text-align: right;
-        letter-spacing: 1px;
-      }
-
-      @keyframes fade {
-        from {
-          opacity: 1;
+        body {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
         }
-        50% {
-          opacity: 0.4;
-        }
-        to {
-          opacity: 1;
-        }
-      }
 
-      @-webkit-keyframes fade {
-        from {
-          opacity: 1;
+        .wrap {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: none;
         }
-        50% {
-          opacity: 0.4;
+
+            .wrap.show {
+                display: block;
+            }
+
+        .container {
+            position: relative;
+            background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            padding: 20px 30px;
+            display: flex;
+            align-items: flex-end;
         }
-        o {
-          opacity: 1;
+
+            .container::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                filter: blur(20px);
+                background: inherit;
+            }
+
+            .container .list {
+                display: flex;
+                align-items: center;
+                position: relative;
+                z-index: 1;
+                transition: width 0.8s ease-in;
+            }
+
+            .container .item {
+                flex-shrink: 0;
+                margin-right: 20px;
+                width: 70px;
+                transition: all 0.8s ease-in;
+            }
+
+            .container .avatar {
+                border-radius: 100%;
+                width: 48px;
+                height: 48px;
+                background-color: #e7e7e7;
+                margin-bottom: 5px;
+                margin: 0 auto 5px auto;
+                background-repeat: no-repeat;
+                background-size: cover;
+                position: relative;
+            }
+
+            .container .name {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .container .text {
+                font-size: 12px;
+                color: white;
+                text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                position: relative;
+            }
+
+            .container .item .flag-online {
+                content: ' ';
+                width: 5px;
+                height: 5px;
+                border-radius: 100%;
+                background-color: #00ff70;
+                display: block;
+                animation: fade 1.5s infinite;
+                -webkit-animation: fade 1.5s infinite;
+                margin-right: 5px;
+                flex-shrink: 0;
+            }
+
+            .container .item.active .tag-active {
+                font-weight: bold;
+                position: absolute;
+                font-size: 20px;
+                color: black;
+                text-align: center;
+                border-radius: 10px;
+                background-color: #fabf00;
+                padding: 2px 15px;
+                white-space: nowrap;
+                transform: scale(0.5);
+                box-sizing: border-box;
+                bottom: -13px;
+                left: -10px;
+            }
+
+            .container .num {
+                font-size: 12px;
+                color: rgba(255, 255, 255, 0.8);
+                text-align: center;
+            }
+
+            .container .moudle-title {
+                position: relative;
+            }
+
+                .container .moudle-title .en {
+                    color: rgba(255, 255, 255, 0.5);
+                    font-size: 12px;
+                    font-weight: 300;
+                    letter-spacing: 15px;
+                }
+
+                .container .moudle-title .cn {
+                    color: white;
+                    font-size: 24px;
+                    margin-bottom: 50px;
+                    position: relative;
+                }
+
+                    .container .moudle-title .cn::after {
+                        content: '';
+                        position: absolute;
+                        left: 0px;
+                        top: 40px;
+                        height: 4px;
+                        width: 40px;
+                        background-color: #fabf00;
+                    }
+
+                .container .moudle-title .date {
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 13px;
+                    font-weight: 300;
+                    letter-spacing: 3px;
+                }
+
+            .container .module-footer {
+                position: relative;
+                margin-left: 10px;
+                min-width: 160px;
+            }
+
+                .container .module-footer .t1 {
+                    color: white;
+                    font-size: 15px;
+                    font-weight: bold;
+                    text-align: right;
+                    position: relative;
+                }
+
+                    .container .module-footer .t1::after {
+                        content: '';
+                        position: absolute;
+                        right: 80px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        width: 10px;
+                        height: 10px;
+                        background-color: #fabf00;
+                    }
+
+                .container .module-footer .total {
+                    color: #fabf00;
+                    font-weight: bold;
+                    text-align: right;
+                    font-size: 40px;
+                    line-height: 1.2;
+                    position: relative;
+                    transition: all 0.8s ease-in;
+                }
+
+                    .container .module-footer .total::before {
+                        content: '+';
+                        color: white;
+                        font-size: 12px;
+                        position: absolute;
+                        right: 55px;
+                        top: 6px;
+                    }
+
+                .container .module-footer .desc {
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 12px;
+                    text-align: right;
+                    letter-spacing: 1px;
+                }
+
+        @keyframes fade {
+            from {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
-      }
+
+        @-webkit-keyframes fade {
+            from {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.4;
+            }
+
+            o {
+                opacity: 1;
+            }
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="wrap" id="app" :class="{show: isShow}">
-      <div class="container">
-        <div class="moudle-title">
-          <div class="en">QUEENLIST</div>
-          <div class="cn">排队列表</div>
-          <div class="date">{{date.yaer}} / {{date.mounth}} / {{date.day}}</div>
-        </div>
-        <div class="list" v-if="isListShow">
-          <div
-            class="item"
-            v-for="(item, index) in listData"
-            :key="index"
-            :class="{active: index === 0}"
-          >
-            <div
-              class="avatar"
-              :style="{'background-image': `url(${item.Face})`}"
-            >
-              <div class="tag-active" v-if="index === 0">当前</div>
+        <div class="container">
+            <div class="moudle-title">
+                <div class="en">QUEENLIST</div>
+                <div class="cn">排队列表</div>
+                <div class="date">{{date.yaer}} / {{date.mounth}} / {{date.day}}</div>
             </div>
-            <div class="name">
-              <div class="flag-online" v-if="item.Is_alive"></div>
-              <div class="text">{{item.UserName}}</div>
+            <div class="list" v-if="isListShow">
+                <div class="item"
+                     v-for="(item, index) in listData"
+                     :key="index"
+                     :class="{active: index === 0}">
+                    <div class="avatar"
+                         :style="{'background-image': `url(${item.Face})`}">
+                        <div class="tag-active" v-if="index === 0">当前</div>
+                    </div>
+                    <div class="name">
+                        <div class="flag-online" v-if="item.Is_alive"></div>
+                        <div class="text">{{item.UserName}}</div>
+                    </div>
+                    <div class="num">NO.{{item.QueueNo}}</div>
+                </div>
             </div>
-            <div class="num">NO.{{item.QueueNo}}</div>
-          </div>
+            <div class="module-footer">
+                <div class="t1">总队列人数</div>
+                <div class="total">{{QueenLength}}</div>
+                <div class="desc">目前仅展示队列前6位舰长</div>
+            </div>
         </div>
-        <div class="module-footer">
-          <div class="t1">总队列人数</div>
-          <div class="total">{{QueenLength}}</div>
-          <div class="desc">目前最多仅展示前10位舰长</div>
-        </div>
-      </div>
     </div>
-  </body>
+</body>
 
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-  <script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script>
     new Vue({
-      el: '#app',
-      data: {
-        listData: [],
-        QueenLength: 0,
-        date: {
-          year: '----',
-          mounth: '--',
-          day: '--'
+        el: '#app',
+        data: {
+            listData: [],
+            QueenLength: 0,
+            date: {
+                year: '----',
+                mounth: '--',
+                day: '--'
+            },
+            path: 'ws://localhost:5678/live',
+            socket: '',
+            isShow: false,
+            isListShow: false
         },
-        path: 'ws://localhost:5678/live',
-        socket: '',
-        isShow: false,
-        isListShow: false
-      },
-      created() {
-        this.getData()
-        this.init()
-      },
-      mounted() {
-        this.isShow = true
-      },
-      methods: {
-        init() {
-          if (this.sockets) this.sockets.close()
-          if (typeof WebSocket === 'undefined') {
-            alert('您的浏览器不支持socket')
-          } else {
-            this.socket = new WebSocket(this.path)
-            this.socket.onmessage = this.getMessage
-            this.socket.onclose = () => setTimeout(() => this.init(), 1000)
-            this.socket.onopen = () => this.socket.send('!')
-          }
+        created() {
+            this.getData()
+            this.init()
         },
-        getMessage(msg) {
-          if (msg.data) {
-            this.QueenLength = JSON.parse(msg.data).length
-            this.listData = JSON.parse(msg.data).slice(0, 10)
-            this.isListShow = true
-          }
+        mounted() {
+            this.isShow = true
         },
-        getData() {
-          let now = new Date()
-          let mounth = now.getMonth() + 1
-          let day = now.getDate()
+        methods: {
+            init() {
+                if (this.sockets) this.sockets.close()
+                if (typeof WebSocket === 'undefined') {
+                    alert('您的浏览器不支持socket')
+                } else {
+                    this.socket = new WebSocket(this.path)
+                    this.socket.onmessage = this.getMessage
+                    this.socket.onclose = () => setTimeout(() => this.init(), 1000)
+                    this.socket.onopen = () => this.socket.send('!')
+                }
+            },
+            getMessage(msg) {
+                if (msg.data) {
+                    this.QueenLength = JSON.parse(msg.data).length
+                    this.listData = JSON.parse(msg.data).slice(0, 6)
+                    this.isListShow = true
+                }
+            },
+            getData() {
+                let now = new Date()
+                let mounth = now.getMonth() + 1
+                let day = now.getDate()
 
-          this.date.yaer = now.getFullYear()
-          this.date.mounth = mounth < 10 ? '0' + mounth : mounth
-          this.date.day = day < 10 ? '0' + day : day
+                this.date.yaer = now.getFullYear()
+                this.date.mounth = mounth < 10 ? '0' + mounth : mounth
+                this.date.day = day < 10 ? '0' + day : day
+            }
         }
-      }
     })
-  </script>
+</script>
 </html>
