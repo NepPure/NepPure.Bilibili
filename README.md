@@ -10,15 +10,15 @@
 所有信息明文存储在本地`config.json`中，默认监听本地5678端口作为ws服务
 
 ## 使用方法
-1. 在船员名单内更新舰长名单
+1. 在OBS中将`index.html`添加到`浏览器`显示10人的宽度为`1333`高度为`155`,添加后可再次缩放
 
-![image](https://user-images.githubusercontent.com/12379907/76145448-7ae66f00-60c4-11ea-9289-19a3bd3719d2.png)
+![image](https://user-images.githubusercontent.com/12379907/76155454-0c86c880-6127-11ea-819e-c5c1ea8b8286.png)
 
 2. 在队列中点击加入，右侧为直播间展示队列
 
 ![image](https://user-images.githubusercontent.com/12379907/76145476-a79a8680-60c4-11ea-961d-e6471382b064.png)
 
-3. 在OBS中添加`浏览器`源，即可在直播间实时展示排队情况
+3. 即可在直播间实时展示排队情况
 
 ![image](https://user-images.githubusercontent.com/12379907/76155402-88344580-6126-11ea-921a-e9faaf304ec1.png)
 
