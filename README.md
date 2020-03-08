@@ -19,8 +19,8 @@
 ![image](https://user-images.githubusercontent.com/12379907/76145476-a79a8680-60c4-11ea-961d-e6471382b064.png)
 
 3. 在OBS中添加`浏览器`源，即可在直播间实时展示排队情况
->TODO:展示界面美化中，稍后上传并更新教程
+![image](https://user-images.githubusercontent.com/12379907/76155402-88344580-6126-11ea-921a-e9faaf304ec1.png)
 
-![image](https://user-images.githubusercontent.com/12379907/76145680-b8e49280-60c6-11ea-9465-c251097b47eb.png)
+![image](https://user-images.githubusercontent.com/12379907/76155322-a483b280-6125-11ea-806f-695e2b5dcc69.png)
 
-![image](https://user-images.githubusercontent.com/12379907/76145547-3effd980-60c5-11ea-952d-bf890c0678f8.png)
+![Desktop 2020 03 08 - 10 11 52 03_1_1](https://user-images.githubusercontent.com/12379907/76155392-73f04880-6126-11ea-9cdd-eb05590aa169.gif)
