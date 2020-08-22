@@ -6,7 +6,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:local="clr-namespace:NepPure.Bilibili"                     
                       xmlns:Views="clr-namespace:NepPure.Bilibili.ViewPanels"                    
-        Title="赫萝酱的哔哩工具箱" Height="600" Width="1100" Icon="favicon.ico" WindowStartupLocation="CenterScreen" ContentRendered="MetroWindow_ContentRendered">
+        Title="哔哩工具箱" Height="600" Width="1100" Icon="favicon.ico" WindowStartupLocation="CenterScreen" ContentRendered="MetroWindow_ContentRendered">
 
     <Grid>
         <Grid.RowDefinitions>

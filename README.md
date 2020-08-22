@@ -1,34 +1,13 @@
 # NepPure.Bilibili
 ![NetFramework.CI](https://github.com/NepPure/NepPure.Bilibili/workflows/NetFramework.CI/badge.svg)
 
-> Bilibili便捷小工具，目前作为赫萝酱的舰长排队小工具开发~~
+> Bilibili便捷小工具，目前只是作为舰长排队信息展示用~~
 
 ## 环境依赖.NET Framework 4.8
 下载地址：https://dotnet.microsoft.com/download/dotnet-framework/thank-you/net48-web-installer
 
 ## 设计说明
 所有信息明文存储在本地`config.json`中，默认监听本地5678端口作为ws服务
-
-**崩坏3服务器判断策略**
-
-服务器 | 合理的关键词，不区分大小写|
--|-|
-安卓 | `安卓`、`Android` |
-IOS | `IOS`、`苹果`、`apple`|
-全平台（桌面） | `桌面`、`全平台` | 
-Bilibili | `Bilibili`、`哔哩`、`B服` | 
-UC | `UC` | 
-360 | `360` | 
-应用宝 | `应用宝`、`宝服` | 
-小米 | `小米`、`xiaomi` | 
-华为 | `华为`、`huawei` | 
-OPPO | `OPPO` | 
-VIVO | `VIVO` | 
-魅族 | `魅族` | 
-酷派 | `酷派` | 
-联想 | `联想` | 
-金立 | `金立` | 
-豌豆荚 | `豌豆荚` | 
 
 ## 使用方法
 1. 在OBS中将`index.html`添加到`浏览器`显示10人的宽度为`1333`高度为`155`,添加后可再次缩放

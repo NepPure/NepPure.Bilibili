@@ -106,6 +106,7 @@
     <Compile Include="Managers\ConfigurationManager.cs" />
     <Compile Include="Managers\WebsocketBehavior.cs" />
     <Compile Include="Managers\WebsocketServer.cs" />
+    <Compile Include="ViewModels\Bh3ServerType.cs" />
     <Compile Include="ViewModels\BilibiliUserVm.cs" />
     <Compile Include="ViewModels\ConfigVm.cs" />
     <Compile Include="ViewModels\MainVm.cs" />

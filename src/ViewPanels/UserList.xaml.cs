@@ -61,7 +61,7 @@ namespace NepPure.Bilibili.ViewPanels
             try
             {
                 var manager = new BilibiliApiManager();
-                var users = await manager.GetLiveTopListAsync(823947, 653768);
+                var users = await manager.GetLiveTopListAsync(3378640, 23730666);
                 App.MainWin.MainVm.Config.BilibiliUsers = manager.MergeUsers(App.MainWin.MainVm.Config.BilibiliUsers, users);
                 await App.MainWin.MainVm.UpdateSearchAsync();
             }
