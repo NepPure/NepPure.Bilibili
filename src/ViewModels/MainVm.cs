@@ -28,23 +28,21 @@ namespace NepPure.Bilibili.ViewModels
 
         public IEnumerable<BilibiliUserVm> SearchedList { get; set; }
 
-        public async Task UpdateSearchAsync()
+        public Task UpdateSearchAsync()
         {
-            await Task.Run(() =>
-             {
-                 InQueueList = Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.InQueueTime);
+            InQueueList = Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.QueueNo);
 
-                 if (string.IsNullOrWhiteSpace(SearchKey))
-                 {
-                     SearchedList = Config.BilibiliUsers;
-                 }
-                 else
-                 {
-                     SearchedList = Config.BilibiliUsers.Where(m => m.UserName.Contains(SearchKey) || m.Uid.ToString().Contains(SearchKey));
-                 }
+            if (string.IsNullOrWhiteSpace(SearchKey))
+            {
+                SearchedList = Config.BilibiliUsers;
+            }
+            else
+            {
+                SearchedList = Config.BilibiliUsers.Where(m => m.UserName.Contains(SearchKey) || m.Uid.ToString().Contains(SearchKey));
+            }
 
-                 WebsocketServer.Broadcast(JsonConvert.SerializeObject(InQueueList));
-             });
+            WebsocketServer.Broadcast(JsonConvert.SerializeObject(InQueueList));
+            return Task.CompletedTask;
         }
     }
 }

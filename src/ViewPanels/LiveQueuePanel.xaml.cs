@@ -1,4 +1,5 @@
-﻿using NepPure.Bilibili.ViewModels;
+﻿using MahApps.Metro.Controls.Dialogs;
+using NepPure.Bilibili.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,14 +40,135 @@ namespace NepPure.Bilibili.ViewPanels
             }
 
             var v = btn.Tag as BilibiliUserVm;
-            v.IsInQueue = !v.IsInQueue;
-            v.InQueueTime = DateTime.Now;
-            var no = 1;
-            foreach (var q in App.MainWin.MainVm.Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.InQueueTime))
+            if (v.IsInQueue)
             {
-                q.QueueNo = no++;
+                // 本次是移出
+                v.IsInQueue = false;
+                int order = 1;
+                foreach (var p in App.MainWin.MainVm.Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.QueueNo))
+                {
+                    p.QueueNo = order++;
+                }
             }
+            else
+            {
+                // 本次是移入
+                v.IsInQueue = true;
+                v.InQueueTime = DateTime.Now;
+                v.QueueNo = App.MainWin.MainVm.Config.BilibiliUsers.Where(m => m.IsInQueue).Count();
+            }
+
             await App.MainWin.MainVm.UpdateSearchAsync();
+        }
+
+        private BilibiliUserVm CheckInQueue(object sender)
+        {
+            if (!(sender is Button btn))
+            {
+                return null;
+            }
+
+            var v = btn.Tag as BilibiliUserVm;
+            if (v.IsInQueue)
+            {
+                return v;
+            }
+
+            return null;
+        }
+
+        private async Task SetOrder(BilibiliUserVm v, int newOrder)
+        {
+            if (v.QueueNo == newOrder)
+            {
+                return;
+            }
+
+            var max = App.MainWin.MainVm.Config.BilibiliUsers
+                .Where(m => m.IsInQueue)
+                .Count();
+
+            var target = App.MainWin.MainVm.Config.BilibiliUsers
+                .Where(m => m.IsInQueue)
+                .Where(m => m.QueueNo == newOrder)
+                .FirstOrDefault();
+
+            if (target == null)
+            {
+                return;
+            }
+
+            var listNo = new Queue<int>();
+            var curent = 1;
+            while (curent <= max)
+            {
+                if (curent == newOrder)
+                {
+                    curent++;
+                    continue;
+                }
+             
+                listNo.Enqueue(curent);
+                curent++;
+            }
+
+            v.QueueNo = newOrder;
+
+            foreach (var p in App.MainWin.MainVm.Config.BilibiliUsers
+                .Where(m => m.IsInQueue)
+                .Where(m => m.Uid != v.Uid)
+                .OrderBy(m => m.QueueNo))
+            {
+                p.QueueNo = listNo.Dequeue();
+            }
+
+            await App.MainWin.MainVm.UpdateSearchAsync();
+        }
+
+        private async void ButtonUp_Click(object sender, RoutedEventArgs e)
+        {
+            var v = CheckInQueue(sender);
+            if (v == null)
+            {
+                return;
+            }
+
+            await SetOrder(v, v.QueueNo - 1);
+        }
+
+        private async void ButtonDown_Click(object sender, RoutedEventArgs e)
+        {
+            var v = CheckInQueue(sender);
+            if (v == null)
+            {
+                return;
+            }
+
+            await SetOrder(v, v.QueueNo + 1);
+        }
+
+        private async void ButtonTop_Click(object sender, RoutedEventArgs e)
+        {
+            var v = CheckInQueue(sender);
+            if (v == null)
+            {
+                return;
+            }
+
+            await SetOrder(v, 1);
+        }
+
+        private async void ButtonBottom_Click(object sender, RoutedEventArgs e)
+        {
+            var v = CheckInQueue(sender);
+            if (v == null)
+            {
+                return;
+            }
+
+            await SetOrder(v, App.MainWin.MainVm.Config.BilibiliUsers
+                .Where(m => m.IsInQueue)
+                .Count());
         }
     }
 }

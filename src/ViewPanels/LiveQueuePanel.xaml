@@ -15,7 +15,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="10"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -26,14 +26,16 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <Label>全部舰长：</Label>
             <TextBox Controls:TextBoxHelper.Watermark="船员昵称或Uid模糊查询" Text="{Binding Path=SearchKey,Mode=TwoWay}"  Width="200">
             </TextBox>
             <Button Click="Button_Click_1" Width="50" Margin="5 0 0 0">过滤</Button>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="2" Orientation="Horizontal">
-            <Button Click="Button_Click_1" Width="120" Margin="5 0 0 0">手动刷新直播展示队列</Button>
-            <Label Margin="5 0 0 0">有任何队列操作会自动同步展示页面</Label>
+            <Label>队列展示舰长：</Label>
+            <!--<Label Margin="5 0 0 0">有任何队列操作会自动同步展示页面</Label>-->
+            <!--<Button Click="Button_Click_1" Width="120" Margin="5 0 0 0" HorizontalAlignment="Right">手动刷新直播展示队列</Button>-->
         </StackPanel>
 
         <ListView x:Name="ListView" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=SearchedList,Mode=OneWay}">
@@ -78,10 +80,16 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="操作"  Width="80">
+                    <GridViewColumn Header="操作"  Width="200">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Tag="{Binding}" Content="{Binding QueueLabel}" Click="Button_Click"></Button>
+                                <StackPanel Orientation="Horizontal">
+                                    <Button Tag="{Binding}" Content="{Binding QueueLabel}" Click="Button_Click"></Button>
+                                    <Button Tag="{Binding}" Content="上移" Click="ButtonUp_Click" Margin="10 0 0 0"></Button>
+                                    <Button Tag="{Binding}" Content="下移" Click="ButtonDown_Click"></Button>
+                                    <Button Tag="{Binding}" Content="置顶" Click="ButtonTop_Click" Margin="10 0 0 0"></Button>
+                                    <Button Tag="{Binding}" Content="置底" Click="ButtonBottom_Click"></Button>
+                                </StackPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
