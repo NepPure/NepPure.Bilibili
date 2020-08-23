@@ -29,16 +29,46 @@ namespace NepPure.Bilibili.Managers
                     result = JsonConvert.DeserializeObject<JObject>(r);
                     if (result["code"].ToString() != "0")
                     {
-                        throw new Exception($"接口请求出错:{result["message"].ToString()}");
+                        throw new Exception($"接口请求出错:{result["message"]}");
                     }
 
                     totalPage = Convert.ToInt32(result["data"]["info"]["page"].ToString());
                     res.AddRange(result["data"]["list"].ToObject<List<BilibiliUserVm>>());
-                    //await Task.Delay(500);
                     curPage++;
                 } while (curPage <= totalPage);
 
                 res.InsertRange(0, result["data"]["top3"].ToObject<List<BilibiliUserVm>>());
+                return res;
+            }
+        }
+
+        public async Task<BilibiliUserVm> GetUserName(string uname)
+        {
+            using (var client = new HttpClient())
+            {
+                var url = $"https://api.bilibili.com/x/web-interface/search/type?context=&keyword={uname}&page=1&search_type=bili_user";
+                JObject result;
+
+                var r = await client.GetStringAsync(url);
+                result = JsonConvert.DeserializeObject<JObject>(r);
+                if (result["code"].ToString() != "0")
+                {
+                    throw new Exception($"接口请求出错:{result["message"]}");
+                }
+
+                if (result["data"]["result"] == null)
+                {
+                    return null;
+                }
+
+                var user = result["data"]["result"].First;
+                var res = new BilibiliUserVm
+                {
+                    Uid = user["mid"].Value<int>(),
+                    UserName = user["uname"].Value<string>(),
+                    Face = "http:" + user["upic"].Value<string>(),
+                };
+
                 return res;
             }
         }
@@ -48,10 +78,13 @@ namespace NepPure.Bilibili.Managers
             return string.Format(urlformat, page, pageSize);
         }
 
-        public List<BilibiliUserVm> MergeUsers(List<BilibiliUserVm> inputOld, List<BilibiliUserVm> newList)
+        public List<BilibiliUserVm> MergeUsers(List<BilibiliUserVm> inputOld, List<BilibiliUserVm> newList, bool setAllGuardZero = true)
         {
             var oldList = JsonConvert.DeserializeObject<List<BilibiliUserVm>>(JsonConvert.SerializeObject(inputOld));
-            oldList.ForEach(m => m.Guard_level = 0);
+            if (setAllGuardZero)
+            {
+                oldList.ForEach(m => m.Guard_level = 0);
+            }
 
             foreach (var u in newList)
             {

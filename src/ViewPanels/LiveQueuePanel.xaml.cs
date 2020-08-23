@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls.Dialogs;
+using NepPure.Bilibili.Managers;
 using NepPure.Bilibili.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,11 @@ namespace NepPure.Bilibili.ViewPanels
             }
 
             var v = btn.Tag as BilibiliUserVm;
+            await AddOrRemove(v);
+        }
+
+        private async Task AddOrRemove(BilibiliUserVm v)
+        {
             if (v.IsInQueue)
             {
                 // 本次是移出
@@ -107,7 +113,7 @@ namespace NepPure.Bilibili.ViewPanels
                     curent++;
                     continue;
                 }
-             
+
                 listNo.Enqueue(curent);
                 curent++;
             }
@@ -169,6 +175,40 @@ namespace NepPure.Bilibili.ViewPanels
             await SetOrder(v, App.MainWin.MainVm.Config.BilibiliUsers
                 .Where(m => m.IsInQueue)
                 .Count());
+        }
+
+        private async void Button_Click_AddTemp(object sender, RoutedEventArgs e)
+        {
+            var exitUser = App.MainWin.MainVm.Config.BilibiliUsers.FirstOrDefault(m => m.UserName == App.MainWin.MainVm.TempUserName);
+            if (exitUser != null)
+            {
+                await AddOrRemove(exitUser);
+                return;
+            }
+
+            var loading = await App.MainWin.ShowProgressAsync("请稍后", "查询中...");
+            loading.SetIndeterminate();
+
+            try
+            {
+                var manager = new BilibiliApiManager();
+                var user = await manager.GetUserName(App.MainWin.MainVm.TempUserName);
+                if (user == null)
+                {
+                    await App.MainWin.ShowMessageAsync("此人不存在", $"未找到：{App.MainWin.MainVm.TempUserName}", MessageDialogStyle.Affirmative);
+                    return;
+                }
+                App.MainWin.MainVm.Config.BilibiliUsers = manager.MergeUsers(App.MainWin.MainVm.Config.BilibiliUsers, new List<BilibiliUserVm> { user }, false);
+                await AddOrRemove(App.MainWin.MainVm.Config.BilibiliUsers.First(m => m.Uid == user.Uid));
+            }
+            catch (Exception ex)
+            {
+                await App.MainWin.ShowMessageAsync("增加路人出错", ex.Message, MessageDialogStyle.Affirmative);
+            }
+            finally
+            {
+                await loading.CloseAsync();
+            }
         }
     }
 }

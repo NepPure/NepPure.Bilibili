@@ -26,6 +26,8 @@ namespace NepPure.Bilibili.ViewModels
 
         public string SearchKey { get; set; }
 
+        public string TempUserName { get; set; }
+
         public IEnumerable<BilibiliUserVm> SearchedList { get; set; }
 
         public Task UpdateSearchAsync()

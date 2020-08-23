@@ -25,7 +25,6 @@ namespace NepPure.Bilibili.ViewModels
 
         /// <summary>
         /// 身份Id
-        /// 653768为赫萝舰长
         /// </summary>
         public int Ruid { get; set; }
 
