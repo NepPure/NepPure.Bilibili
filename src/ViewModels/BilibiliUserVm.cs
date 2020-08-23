@@ -53,6 +53,27 @@ namespace NepPure.Bilibili.ViewModels
         [JsonIgnore]
         public bool IsAlive => Is_alive > 0 ? true : false;
 
+        [JsonIgnore]
+        public string AliveStateLabel
+        {
+            get
+            {
+                if (Guard_level == 0)
+                {
+                    return "非舰长";
+                }
+
+                if (IsAlive)
+                {
+                    return "在看";
+                }
+                else
+                {
+                    return "否";
+                }
+            }
+        }
+
         /// <summary>
         /// 1总督
         /// 2提督

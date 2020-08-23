@@ -49,8 +49,8 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="昵称" DisplayMemberBinding="{Binding UserName}"  Width="150"/>
-                    <GridViewColumn Header="在看直播" DisplayMemberBinding="{Binding IsAlive}"  Width="100"/>
-                    <GridViewColumn Header="操作"  Width="80">
+                    <GridViewColumn Header="在看直播" DisplayMemberBinding="{Binding AliveStateLabel}"  Width="60"/>
+                    <GridViewColumn Header="操作"  Width="60">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Tag="{Binding}" Content="{Binding QueueLabel}" Click="Button_Click"></Button>
@@ -73,6 +73,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="昵称" DisplayMemberBinding="{Binding UserName}"  Width="150"/>
+                    <GridViewColumn Header="在看直播" DisplayMemberBinding="{Binding AliveStateLabel}"  Width="60"/>
                     <GridViewColumn Header="备注"  Width="160">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
