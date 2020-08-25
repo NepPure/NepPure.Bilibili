@@ -210,5 +210,22 @@ namespace NepPure.Bilibili.ViewPanels
                 await loading.CloseAsync();
             }
         }
+
+        private async void Button_Click_Clear(object sender, RoutedEventArgs e)
+        {
+            var confirm = await App.MainWin.ShowMessageAsync("您确认吗？", "正在清空队列", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
+            {
+                AffirmativeButtonText = "清空",
+                NegativeButtonText = "取消"
+            });
+
+            if (confirm.ToString() == "Negative")
+            {
+                return;
+            }
+
+            App.MainWin.MainVm.Config.BilibiliUsers.ForEach(m => m.IsInQueue = false);
+            await App.MainWin.MainVm.UpdateSearchAsync();
+        }
     }
 }
