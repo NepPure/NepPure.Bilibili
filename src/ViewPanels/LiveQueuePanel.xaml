@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:NepPure.Bilibili.ViewPanels"
              xmlns:localRoot="clr-namespace:NepPure.Bilibili"
              mc:Ignorable="d" 
-                     xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"             
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"             
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>

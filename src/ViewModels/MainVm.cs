@@ -30,6 +30,13 @@ namespace NepPure.Bilibili.ViewModels
 
         public IEnumerable<BilibiliUserVm> SearchedList { get; set; }
 
+        /// <summary>
+        /// 抽的人数
+        /// </summary>
+        public int DrawCount { get; set; }
+
+        public IEnumerable<BilibiliUserVm> DrawedList { get; set; }
+
         public Task UpdateSearchAsync()
         {
             InQueueList = Config.BilibiliUsers.Where(m => m.IsInQueue).OrderBy(m => m.QueueNo);

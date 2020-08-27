@@ -23,6 +23,9 @@
                 <Views:UserList DataContext="{Binding}"></Views:UserList>
             </TabItem>
 
+            <TabItem Header="抽奖(beta)">
+                <Views:DrawPanel DataContext="{Binding}"></Views:DrawPanel>
+            </TabItem>
 
             <TabItem Header="关于">
                 <TextBox TextWrapping="WrapWithOverflow" IsReadOnly="True">项目MIT开源，更多信息请访问Github源码仓库：https://github.com/NepPure/NepPure.Bilibili</TextBox>

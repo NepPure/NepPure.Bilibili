@@ -110,6 +110,9 @@
     <Compile Include="ViewModels\BilibiliUserVm.cs" />
     <Compile Include="ViewModels\ConfigVm.cs" />
     <Compile Include="ViewModels\MainVm.cs" />
+    <Compile Include="ViewPanels\DrawPanel.xaml.cs">
+      <DependentUpon>DrawPanel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewPanels\LiveQueuePanel.xaml.cs">
       <DependentUpon>LiveQueuePanel.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="ViewPanels\DrawPanel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewPanels\LiveQueuePanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
