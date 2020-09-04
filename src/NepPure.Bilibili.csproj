@@ -206,5 +206,11 @@
       <Version>1.0.1</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BiliDMLib\BiliDMLib.csproj">
+      <Project>{76778870-a6f5-43f4-9baa-dec0473f217e}</Project>
+      <Name>BiliDMLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
