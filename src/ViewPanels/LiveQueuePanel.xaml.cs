@@ -224,8 +224,44 @@ namespace NepPure.Bilibili.ViewPanels
                 return;
             }
 
+            var loading = await App.MainWin.ShowProgressAsync("请稍后", "清空中...");
+            loading.SetIndeterminate();
+
             App.MainWin.MainVm.Config.BilibiliUsers.ForEach(m => m.IsInQueue = false);
             await App.MainWin.MainVm.UpdateSearchAsync();
+
+            await loading.CloseAsync();
+        }
+
+        private async void Button_Click_AddGuard(object sender, RoutedEventArgs e)
+        {
+            var confirm = await App.MainWin.ShowMessageAsync("您确认吗？", "正在添加全部舰长到队列，在看直播的排在前面", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings
+            {
+                AffirmativeButtonText = "确认添加",
+                NegativeButtonText = "取消"
+            });
+
+            if (confirm.ToString() == "Negative")
+            {
+                return;
+            }
+
+            var loading = await App.MainWin.ShowProgressAsync("请稍后", "添加中...");
+            loading.SetIndeterminate();
+            // 获取所有不在队列的舰长
+            var gurads = App.MainWin.MainVm.Config.BilibiliUsers
+                .Where(m => !m.IsInQueue)
+                .Where(m => m.Guard_level > 0)
+                .OrderByDescending(m => m.IsAlive)
+                .ThenByDescending(m => m.Guard_level)
+                .ThenBy(m => m.No);
+
+            foreach (var guard in gurads)
+            {
+                await AddOrRemove(guard);
+            }
+
+            await loading.CloseAsync();
         }
     }
 }

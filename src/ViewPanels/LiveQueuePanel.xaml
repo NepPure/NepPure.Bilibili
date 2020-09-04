@@ -7,7 +7,7 @@
              xmlns:localRoot="clr-namespace:NepPure.Bilibili"
              mc:Ignorable="d" 
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"             
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1050">
 
     <UserControl.Resources>
         <localRoot:ImgConverter x:Key="imgConverter" />
@@ -37,7 +37,8 @@
             <TextBox Controls:TextBoxHelper.Watermark="准确的B站昵称" Text="{Binding Path=TempUserName,Mode=TwoWay}"  Width="200">
             </TextBox>
             <Button Click="Button_Click_AddTemp" Width="80" Margin="5 0 0 0">新增到队列</Button>
-            <Button Click="Button_Click_Clear" Width="55" Margin="5 0 0 0" >清空队列</Button>
+            <Button Click="Button_Click_AddGuard" Width="110" Margin="5 0 0 0" >添加全部舰长到队列</Button>
+            <Button Click="Button_Click_Clear" Width="55" Margin="20 0 0 0" >清空队列</Button>
         </StackPanel>
 
         <ListView x:Name="ListView" Grid.Column="0" Grid.Row="1" ItemsSource="{Binding Path=SearchedList,Mode=OneWay}">
