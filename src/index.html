@@ -146,6 +146,7 @@
 
         .container .moudle-title {
             position: relative;
+            margin-right: 50px;
         }
 
         .container .moudle-title .en {
@@ -264,9 +265,11 @@
     <div class="wrap" id="app" :class="{show: isShow}">
         <div class="container">
             <div class="moudle-title">
-                <div class="en">QUEENLIST</div>
+                <!-- <div class="en">QUEENLIST</div> -->
                 <div class="cn">排队列表</div>
-                <div class="date">{{date.yaer}} / {{date.mounth}} / {{date.day}}</div>
+                <!-- <div class="date">{{date.yaer}} / {{date.mounth}} / {{date.day}}</div> -->
+                <div class="date">{{tip}}</div>
+                <div class="date">{{tipDate}}</div>
             </div>
             <div class="list" v-if="isListShow">
                 <div class="item" v-for="(item, index) in listData" :key="index" :class="{active: index === 0}">
@@ -294,12 +297,19 @@
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment"></script>
 <script>
+    function PrefixInteger(num, length) {
+        return ("0000000000000000" + num).substr(-length);
+    }
+
     new Vue({
         el: '#app',
         data: {
             listData: [],
             QueenLength: 0,
+            tip: '距离深渊结算还有',
+            tipDate: '45:12:30',
             date: {
                 year: '----',
                 mounth: '--',
@@ -311,7 +321,7 @@
             isListShow: false
         },
         created() {
-            this.getData()
+            this.getTip()
             this.init()
         },
         mounted() {
@@ -344,6 +354,18 @@
                 this.date.yaer = now.getFullYear()
                 this.date.mounth = mounth < 10 ? '0' + mounth : mounth
                 this.date.day = day < 10 ? '0' + day : day
+            },
+            getTip() {
+                let close1 = moment(moment().day(0).format('YYYY-MM-DD 22:00:00'))
+                let close2 = moment(moment().day(3).format('YYYY-MM-DD 22:00:00'))
+                let close = moment() < close1 ? close1 : close2
+
+                let dur = moment.duration(close - moment())
+                this.tipDate = `${Math.floor(dur.asHours())}:${PrefixInteger(dur.minutes(), 2)}:${PrefixInteger(dur.seconds(), 2)}`
+
+                setTimeout(() => {
+                    this.getTip()
+                }, 1000);
             }
         }
     })

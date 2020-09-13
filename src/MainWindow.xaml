@@ -35,7 +35,6 @@
 
         <StatusBar Grid.Row="1">
             <StatusBarItem Content="{Binding Path=VersionLabel, Mode=OneTime}"></StatusBarItem>
-            <Separator Style="{StaticResource MetroStatusBarSeparator}"></Separator>
             <StatusBarItem>当前页面：</StatusBarItem>
             <StatusBarItem Content="{Binding ElementName=MainTabControl,Path=SelectedItem.Header,Mode=OneWay}"></StatusBarItem>
         </StatusBar>
